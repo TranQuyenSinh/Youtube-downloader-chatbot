@@ -24,7 +24,7 @@ const getWebHook = (req, res) => {
 
 const postWebHook = (req, res) => {
     let body = req.body
-    let host = req.protocol + '://' + req.host + ':' + req.headers.host.split(':')[1]
+    let host = 'https://' + req.host
 
     if (body.object === 'page') {
         body.entry.forEach(entry => {
@@ -64,7 +64,7 @@ const handleMessage = (sender_psid, received_message, host) => {
 const test = (req, res) => {
     let { url } = req.query
     let rec = { text: url }
-    let host = req.protocol + '://' + req.hostname + ':' + req.headers.host.split(':')[1]
+    let host = req.protocol + '://' + req.hostname + ':' + req.headers.host.split(':')[1] || ''
     handleMessage(1, rec, host)
 }
 
